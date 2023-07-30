@@ -6,6 +6,8 @@ checkpoints
 wandb
 test_results
 .vscode
+*/__pycache__
+__pycache__
 
 !hyperparameters/config.json
 !hyperparameters/config.txt
