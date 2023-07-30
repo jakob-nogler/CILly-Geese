@@ -1,0 +1,64 @@
+{
+    "config_list": [
+        {
+            "model": "autoencoder",
+            "num_repetitions": 1,
+            "baseline": 0.99,
+            "hyperparameters": {
+                "_wandb": {},
+                "activation": "elu",
+                "batch_size": 128,
+                "drop_probability": 0,
+                "encoded_dimension": 24,
+                "enhancement_factor": 0,
+                "hidden_dimension": 64,
+                "indicate_interactions": false,
+                "learning_rate": 0.005395645120236295,
+                "momentum": 1,
+                "num_epochs": 6,
+                "num_hidden_decoder": 2,
+                "num_hidden_encoder": 1,
+                "one_hot_reviews": false,
+                "optimizer": "adam",
+                "patience": 21,
+                "predict_interactions": false,
+                "refeed_density": 0.5,
+                "refeeds": 1,
+                "seed": 715593,
+                "transpose": false,
+                "weight_decay": 0.00012482228086823066
+            },
+            "sweep_configuration":{
+                "method": "bayes",
+                "name": "bayes_sweep_1",
+                "metric": {"goal": "minimize", "name": "validation_score"},
+                "parameters":{
+                    "batch_size": {"values": [64, 128, 256, 512]},
+                    "encoded_dimension": {"values": [16, 24, 32, 64, 128, 256, 512, 1024]},
+                    "hidden_dimension": {"values": [16, 24, 32, 64, 128, 256, 512, 1024, 2048]},
+                    "learning_rate": {"min": 1e-5, "max": 1e-2},
+                    "num_hidden_decoder": {"min": 1, "max": 3},
+                    "num_hidden_encoder": {"min": 1, "max": 3},
+                    "one_hot_reviews": {"values": [true, false]},
+                    "patience": {"min": 20, "max": 40},
+                    "transpose": {"values": [true, false]},
+                    "weight_decay": {"min": 0.0, "max": 1e-3},
+                    "drop_probability": {"values": [0.0, 0.0, 0.0, 0.05, 0.1, 0.15]},
+                    "momentum": {"min": 0, "max": 1},
+                    "optimizer": {"values": ["adam"]},
+                    "predict_interactions": {"values": [true, false]},
+                    "indicate_interactions": {"values": [true, false]},
+                    "enhancement_factor": {"values": [0,0,0,1,2]},
+                    "activation": {"values": ["relu", "selu", "elu"]},
+                    "refeeds": {"min": 0, "max": 2},
+                    "refeed_density": {"values": [0.1, 0.2, 0.5, 1]},
+                    "num_epochs": {"min": 0, "max": 400}
+                },
+                "early_terminate": {
+                    "type": "hyperband",
+                    "min_iter": 40
+                }
+            }
+        }
+    ]
+}

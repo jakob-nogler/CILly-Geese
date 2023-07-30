@@ -1,0 +1,37 @@
+{
+    "config_list": [
+        {
+            "model": "gernot",
+            "num_repetitions": 1,
+            "baseline": 0.99,
+            "hyperparameters":{
+                "learning_rate": 0.001,
+                "weight_decay": 0,
+                "batch_size": 4096,
+                "embedding_dim": 16,
+                "n_layers": 3,
+                "drop_probability": 0.5,
+                "patience": 5,
+                "normalize": "item",
+                "activation": "relu",
+                "hidden_dimension": 64,
+                "num_epochs": 86,
+                "seed": 
+            },
+            "sweep_configuration":{
+                "method": "random",
+                "name": "laptop_sweep_1",
+                "metric": {"goal": "minimize", "name": "validation_score"},
+                "parameters":{
+                    "learning_rate": {"min": 1e-4, "max": 5e-2},
+                    "weight_decay": {"min": 0.0, "max": 1e-3},
+                    "batch_size": {"values": [1024, 2048, 4096]},
+                    "embedding_dim": {"values": [8, 12, 16, 24, 32]},
+                    "n_layers": {"min": 2, "max": 6},
+                    "drop_probability": {"min": 0.0, "max": 0.5},
+                    "patience": {"min": 2, "max": 10}
+                }
+            }
+        }
+    ]
+}

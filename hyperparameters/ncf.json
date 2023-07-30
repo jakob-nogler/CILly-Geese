@@ -1,0 +1,13 @@
+{
+    "config_list": [
+        {
+            "baseline": 0.99,
+            "model": "ncf",
+            "num_repetitions": 400,
+            "hyperparameters": {
+                "patience": 5,
+                "learning_rate": 1
+            },
+        }
+    ]
+}

@@ -1,0 +1,50 @@
+{
+    "config_list": [
+        {
+            "model": "autoencoder",
+            "num_repetitions": 200,
+            "baseline": 0.991,
+            "hyperparameters": {
+                "hidden_dimension": [2048, 1024, 512, 256, 128, 64, 32],
+                "encoded_dimension": [512, 256, 128, 64, 32, 24, 16],
+                "transpose": [true, false],
+                "one_hot_reviews": [true, false],
+                "learning_rate": [5e-1, 1e-2, 1e-3, 1e-4],
+                "weight_decay": [1e-4, 5e-4, 1e-3],
+                "batch_size": [512, 256, 128],
+                "num_hidden_encoder": [1,2,3],
+                "num_hidden_decoder": [1,2,3],
+                "patience": [30, 40],
+                "drop_probability": [0, 0.05, 0.1, 0.15],
+                "optimizer":  ["adam"],
+                "momentum": 0.9,
+                "predict_interactions": true
+            }
+        },
+        {
+            "model": "ncf",
+            "num_repetitions": 0,
+            "baseline": 0.996,
+            "hyperparameters": {
+                "patience": [3, 5, 7, 10],
+                "learning_rate": 1e-3,
+                "weight_decay": [1e-6, 5e-6, 1e-5, 5e-5, 1e-4, 5e-4, 1e-3],
+                "batch_size": [512, 256, 128],
+                "movies_embedding_size": [64, 32, 24, 16, 12, 8],
+                "users_embedding_size": [128, 64, 32, 24, 16],
+                "num_layers": [1,2,3],
+                "hidden_dimension": [256, 128, 64, 32]
+            }
+        },
+        {
+            "model": "als",
+            "num_repetitions": 0,
+            "baseline": 0.996,
+            "hyperparameters":{
+                "rank": [4, 5, 6, 7, 8, 9, 10, 20, 30],
+                "num_iterations": 20,
+                "reg_parameter": [0.1, 0.07, 0.05, 0.04, 0.03, 0.01, 0.005, 0.001, 0.0005]
+            }
+        }
+    ]
+}
