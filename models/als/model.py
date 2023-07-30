@@ -20,6 +20,8 @@ class ALSModel(Model):
         self.num_iters = hyperparameters["num_iterations"]
         self.lam = hyperparameters["reg_parameter"]
         self.num_svd_runs = hyperparameters.get("num_svd_runs", 3)
+        self.lr = hyperparameters.get("svd_lr", 0.1)
+        self.use_iSVD = hyperparameters.get("iSVD", False) # determines whether we use iSVD or proj_SVD
         self.transpose = hyperparameters.get("transpose", False)
         self.rec_mtx = None
 
@@ -68,6 +70,20 @@ class ALSModel(Model):
 
     def get_score(self, predictions, target_values):
         return self.rmse(predictions, target_values)
+    
+    def proj_SVD(self, A, mask, lr=0.1, rank=10, num_iters=10):
+        U = np.random.uniform(low=-1.0, high=1.0, size=(A.shape[0], rank))
+        V = np.random.uniform(low=-1.0, high=1.0, size=(rank, A.shape[1]))
+        A_curr = np.zeros((A.shape[0], A.shape[1]))
+        for _ in range(num_iters):
+            diff = np.multiply(np.subtract(A, A_curr), mask)
+            pre_svd = A_curr + lr*diff
+            U, S, Vt = svds(pre_svd, k=rank)
+            S = np.diag(S)
+            U = U.dot(np.sqrt(S))
+            V = np.sqrt(S).dot(Vt)
+            A_curr = U.dot(V)
+        return U, V, A_curr     
 
     def iSVD(self, A, mask, rank=10, num_iters=3):
         U = np.random.uniform(low=-1.0, high=1.0, size=(A.shape[0], rank))
@@ -106,9 +122,13 @@ class ALSModel(Model):
         A = np.multiply(A, mask)
 
         # SVD to initialize
-        U, V, _ = self.iSVD(A, mask, self.rank, self.num_svd_runs)
+        U, V = None, None
+        if self.use_iSVD:
+            U, V, _ = self.iSVD(A, mask, self.rank, self.num_svd_runs)
+        else:
+            U, V, _ = self.proj_SVD(A, mask, self.lr, self.rank, self.num_svd_runs)
 
-        for it in range(self.num_iters):
+        for _ in range(self.num_iters):
             # update to Y
             B = U.transpose() @ A
             Q = np.ndarray((rows, self.rank, self.rank))
@@ -145,10 +165,8 @@ class ALSModel(Model):
         rec_mtx = np.clip(output, 1, 5)
         return rec_mtx
 
-    # saves the model under the specified path
     def save(self, path: str):
         np.save(path, self.rec_mtx)
-        # loads the model from the specified path
 
     def load(self, path: str):
         self.rec_mtx = np.load(path)

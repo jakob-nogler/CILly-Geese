@@ -27,6 +27,9 @@ class BayesianSVD(Model):
             "user_interactions", True)
         self.movie_interactions = self.hyperparameters.get(
             "movie_interactions", True)
+        self.all_implicit_data = self.hyperparameters.get(
+            "all_implicit_feedback", True
+        )
 
         self.train_set = self.convert_dataframe(self.train_set)
         self.test_set = self.convert_dataframe(self.test_set)
@@ -101,7 +104,10 @@ class BayesianSVD(Model):
         return pd.DataFrame({"user_id": users, "movie_id": movies, "rating": predictions})
 
     def prepare_implicit_data(self):
-        implicit_data_source = pd.read_csv("./data/user_movie_pairs.csv")
+        if self.all_implicit_data:
+            implicit_data_source = pd.read_csv("./data/user_movie_pairs.csv")
+        else:
+            implicit_data_source = self.train_set
         self.user_to_internal = CategoryValueToSparseEncoder[int](
             implicit_data_source.user_id.values
         )

@@ -60,9 +60,10 @@ class LightGCN(Model):
 
         self.optimizer = optim.Adam(
             self.model.parameters(), lr=self.lr, weight_decay=self.weight_decay)
-        self.lr_scheduler = optim.lr_scheduler.ReduceLROnPlateau(self.optimizer,
-                                                                 factor=0.5,
-                                                                 patience=self.patience)
+        self.lr_scheduler = optim.lr_scheduler.LinearLR(self.optimizer,
+                                                        start_factor=1.,
+                                                        end_factor=0.01,
+                                                        total_iters=20)
 
     # whole training
 
@@ -80,7 +81,8 @@ class LightGCN(Model):
 
         self.model.eval()
         val_score = self.test()
-        self.lr_scheduler.step(val_score)
+        self.lr_scheduler.step()
+        # self.lr_scheduler.step(val_score)
         return total_loss
 
     # predicts on the test set and return the score

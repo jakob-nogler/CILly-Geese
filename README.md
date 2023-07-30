@@ -8,7 +8,7 @@ It is also allows for integration with [wandb](https://wandb.ai/).
 # Installation
 
 Before running the project, please make sure that python 3.9 and are installed on your machine.
-To install the required packages, please run 'python -m pip install -r requirements.txt'
+To install the required packages, please run `python -m pip install -r requirements.txt`
 
 # Quick start
 

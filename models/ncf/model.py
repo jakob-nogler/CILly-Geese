@@ -58,8 +58,12 @@ class NCF(model.Model):
                      drop_probability=hyperparameters['drop_probability']).to(device)
         self.optimizer = optim.Adam(self.nn.parameters(
         ), lr=hyperparameters['learning_rate'], weight_decay=hyperparameters['weight_decay'])
-        self.scheduler = ReduceLROnPlateau(
-            self.optimizer, 'min', patience=hyperparameters['patience'])
+        self.scheduler = optim.lr_scheduler.LinearLR(self.optimizer,
+                                                     start_factor=1.,
+                                                     end_factor=0.01,
+                                                     total_iters=20)
+        # ReduceLROnPlateau(
+        # self.optimizer, 'min', patience=hyperparameters['patience'])
 
     # do one epoch of training
     def train(self):
@@ -75,7 +79,7 @@ class NCF(model.Model):
             total_loss += loss.item()
             self.optimizer.step()
 
-        self.scheduler.step(self.test())
+        # self.scheduler.step(self.test())
 
         return total_loss
 
