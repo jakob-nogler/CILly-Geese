@@ -1,0 +1,17 @@
+{
+    "config_list": [
+        {
+            "model": "funkSVD",
+            "num_repetitions": 0,
+            "baseline": 1.1,
+            "hyperparameters":{
+                "learning_rate": 0.0109,
+                "n_factors": 50,
+                "n_epochs": 31,
+                "reg_parameter": 0.0812099,
+                "early_stopping": false,
+                "seed": 928068
+            }
+        }
+    ]
+}

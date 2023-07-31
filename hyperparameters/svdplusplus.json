@@ -1,0 +1,15 @@
+{
+    "config_list": [
+        {
+            "model": "SVDplusplus",
+            "num_repetitions": 1,
+            "baseline": 1.1,
+            "hyperparameters":{
+                "learning_rate": 0.003910657605171608,
+                "n_factors": 24,
+                "n_epochs": 40,
+                "reg_parameter": 0.04309994347823631
+            }
+        }
+    ]
+}

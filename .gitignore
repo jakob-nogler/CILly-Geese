@@ -8,6 +8,7 @@ test_results
 .vscode
 */__pycache__
 __pycache__
+*/*.pyc
 
 !hyperparameters/config.json
 !hyperparameters/config.txt
@@ -18,3 +19,6 @@ __pycache__
 !hyperparameters/gernot.json
 !hyperparameters/cfda.json
 !hyperparameters/ensemble.json
+!hyperparameters/bayesiansvd.json
+!hyperparameters/funksvd.json
+!hyperparameters/svdplusplus.json

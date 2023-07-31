@@ -1,0 +1,16 @@
+{
+    "config_list": [
+        {
+            "baseline": 1.2,
+            "hyperparameters": {
+                "num_epochs": 100,
+                "rank": 30,
+                "user_interactions": true,
+                "movie_interactions": true,
+                "all_implicit_feedback": false
+            },
+            "model": "bayesiansvd",
+            "num_repetitions": 1
+        }
+    ]
+}

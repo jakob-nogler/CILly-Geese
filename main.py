@@ -27,8 +27,6 @@ parser.add_argument("--save_test_predictions", action="store_true",
                     help="Save the validation set predictions to file")
 parser.add_argument("--almost_full_data", action="store_true",
                     help="Use 0.995 of the set for training")
-parser.add_argument("--movielens", action="store_true",
-                    help="Use the movielens dataset")
 
 
 args = parser.parse_args()
@@ -55,7 +53,7 @@ start_training(config,
                sweep_id=args.sweep_id,
                save_validation=args.save_test_predictions,
                almost_full_data=args.almost_full_data,
-               movielens=args.movielens)
+               movielens=False)
 try:
     os.remove("./checkpoints/checkpoint.json")
 except:

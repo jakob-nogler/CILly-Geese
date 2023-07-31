@@ -1,0 +1,25 @@
+{
+    "baseline": 1,
+    "hyperparameters": {
+        "activation": "relu",
+        "batch_size": 512,
+        "drop_probability": 0,
+        "encoded_dimension_movie": 16,
+        "encoded_dimension_user": 16,
+        "extension_factor": 2,
+        "hidden_dimension_movie": 64,
+        "hidden_dimension_predictor": 64,
+        "hidden_dimension_user": 64,
+        "learning_rate": 0.0001,
+        "num_epochs": 28,
+        "patience": 3,
+        "seed": 850753,
+        "steps_per_epoch": 100,
+        "train_embeddings": true,
+        "use_all_interactions": true,
+        "weight_decay": 0
+    },
+    "model": "oneidea",
+    "num_repetitions": 1,
+    "test_score": 0.9804363662272154
+}

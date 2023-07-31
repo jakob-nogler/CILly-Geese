@@ -3,11 +3,19 @@
         {
             "baseline": 0.99,
             "model": "ncf",
-            "num_repetitions": 400,
+            "num_repetitions": 1,
             "hyperparameters": {
-                "patience": 5,
-                "learning_rate": 1
-            },
+                 "batch_size": 128,
+                 "drop_probability": 0,
+                 "hidden_dimension": 64,
+                 "learning_rate": 0.025917985795568567,
+                 "movies_embedding_size": 16,
+                 "num_layers": 1,
+                 "patience": 7,
+                 "seed": 765075029,
+                 "users_embedding_size": 32,
+                 "weight_decay": 1e-4
+            }
         }
     ]
 }
