@@ -16,7 +16,7 @@ class Model():
         T.manual_seed(hyperparameters['seed'])
         random.seed(hyperparameters['seed'])
 
-    
+
     def train(self) -> float:
         """Performs one epoch of the training"""
         pass

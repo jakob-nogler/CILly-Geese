@@ -280,7 +280,7 @@ def train_combination_weights(predictions: "np.array", target_values: "np.array"
 
 
 def compute_score(predictions: "np.array", target_values: "np.array") -> float:
-    """Computes rmse 
+    """Computes rmse
     """
     return math.sqrt(mean_squared_error(target_values, predictions))
 

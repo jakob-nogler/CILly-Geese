@@ -70,7 +70,7 @@ class ALSModel(Model):
 
     def get_score(self, predictions, target_values):
         return self.rmse(predictions, target_values)
-    
+
     def proj_SVD(self, A, mask, lr=0.1, rank=10, num_iters=10):
         U = np.random.uniform(low=-1.0, high=1.0, size=(A.shape[0], rank))
         V = np.random.uniform(low=-1.0, high=1.0, size=(rank, A.shape[1]))
@@ -83,7 +83,7 @@ class ALSModel(Model):
             U = U.dot(np.sqrt(S))
             V = np.sqrt(S).dot(Vt)
             A_curr = U.dot(V)
-        return U, V, A_curr     
+        return U, V, A_curr
 
     def iSVD(self, A, mask, rank=10, num_iters=3):
         U = np.random.uniform(low=-1.0, high=1.0, size=(A.shape[0], rank))

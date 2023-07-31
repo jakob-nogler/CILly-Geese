@@ -17,20 +17,20 @@ class SVDplusplus(Model):
         self.reader = Reader(rating_scale=(1,5))
         surp_train = Dataset.load_from_df(self.train_data, self.reader)
         full_surp_trainset = surp_train.build_full_trainset()
-        
+
         self.lr = hyperparameters["learning_rate"]
         self.reg = hyperparameters["reg_parameter"]
         self.n_epochs = hyperparameters["n_epochs"]
         self.n_factors = hyperparameters["n_factors"]
         self.early_stopping = hyperparameters.get('early_stopping', True)
         self.rec_mtx = None
-        
+
         self.alg = SVDpp(n_factors = self.n_factors,
                          n_epochs = self.n_epochs,
                          lr_all = self.lr,
                          reg_all = self.reg)
         self.alg.fit(full_surp_trainset)
-        
+
     def train(self) -> float:
         return 0
 

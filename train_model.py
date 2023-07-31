@@ -28,7 +28,7 @@ def get_trained_model(config: dict, train_set: "pd.DataFrame", test_set: "pd.Dat
     Returns:
         typing.Tuple[Model, dict, list[dict]]: Returns a tuple (trained_model, model_hyperparameters, training_log)
     """
-    
+
     if not use_wandb:
         #randomly draw hyperparameters from the lists as specified in the config file
         hyperparameters = draw_hyperparameters(config["hyperparameters"])
@@ -46,7 +46,7 @@ def get_trained_model(config: dict, train_set: "pd.DataFrame", test_set: "pd.Dat
     model_hash = get_model_hash(config["model"], hyperparameters, full_data)
     directory = f"./trained_models/{config['model']}"
     path = f"./trained_models/{config['model']}/{model_hash}"
-    
+
     if os.path.exists(path):
         print(f"Found trained {config['model']} model, loading...")
         model.load(path)
@@ -87,10 +87,10 @@ def train_model(model: Model, verbose: bool = False, use_wandb: bool = False, fu
 
     if "num_epochs" in model.hyperparameters:
         max_epochs = model.hyperparameters["num_epochs"]
-    
+
     min_score = 50000
     min_epoch = -1
-    
+
     #train the model as long as there is progress on the validation set
     while (not full_data and not stopper.early_stop) or (full_data and max_epochs and i <= max_epochs):
         #one epoch
@@ -103,16 +103,16 @@ def train_model(model: Model, verbose: bool = False, use_wandb: bool = False, fu
         test_score = model.test()
         stopper.step(test_score)
         epoch_log["test_score"] = test_score
-        
+
         if test_score <= min_score:
             min_epoch = i
-        
+
         if verbose:
             print(
                 f"Epoch {i} | loss: {loss} | test score: {test_score}")
 
         log.append(epoch_log)
-        
+
         #log the epoch to the wandb server
         if use_wandb:
             wandb.log({
@@ -120,7 +120,7 @@ def train_model(model: Model, verbose: bool = False, use_wandb: bool = False, fu
                 'validation_score': test_score,
                 'loss': loss
             })
-            
+
         i += 1
 
     return log, min_epoch
