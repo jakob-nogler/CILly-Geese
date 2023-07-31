@@ -2,7 +2,7 @@
     "config_list": [
         {
             "model": "funkSVD",
-            "num_repetitions": 0,
+            "num_repetitions": 1,
             "baseline": 1.1,
             "hyperparameters":{
                 "learning_rate": 0.0109,
