@@ -3,7 +3,6 @@ from .model import Model
 from .autoencoder.model import Autoencoder
 from .ncf.model import NCF
 from .als.model import ALSModel
-from .vae.model import VAE
 from .LightGCN.model import LightGCN
 from .funkSVD.model import funkSVD
 from .SVDplusplus.model import SVDplusplus
@@ -22,7 +21,6 @@ def get_model(name: str, hyperparameters: dict, train_set: "pd.DataFrame", test_
         'autoencoder': Autoencoder,
         'ncf': NCF,
         'als': ALSModel,
-        'vae': VAE,
         'lightgcn': LightGCN,
         'funksvd': funkSVD,
         'svdplusplus': SVDplusplus,
