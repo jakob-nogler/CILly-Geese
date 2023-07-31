@@ -90,9 +90,9 @@ class NCF(model.Model):
         all_predictions = torch.cat(all_predictions)
         all_predictions = self.round_tensor(all_predictions)
 
-        reconstuction_rmse = self.get_score(
+        reconstruction_rmse = self.get_score(
             all_predictions.cpu().numpy(), self.test_predictions)
-        return reconstuction_rmse
+        return reconstruction_rmse
 
     # predicts the reviews
     def predict(self, to_predict):

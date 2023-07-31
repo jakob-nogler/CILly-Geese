@@ -33,7 +33,7 @@ def start_training(config: "dict", verbose: bool = False, save_log: bool = False
         output_config_name (str, optional): file name for the config file with hyperparameters of models trained in this process
         output_prediction_name (str, optional): file name for the final predictions
         use_wandb (bool, optional): Use the wandb sweeps framework for hyperparameter search - requires wandb login
-        sweep_id (str, optional): Sweed id of the sweep to be resumed (o/w creates a new sweep)
+        sweep_id (str, optional): Sweep id of the sweep to be resumed (o/w creates a new sweep)
         save_validation (bool, optional): Saves the predictions on the validation set.
     """
     full_config = copy.deepcopy(config)

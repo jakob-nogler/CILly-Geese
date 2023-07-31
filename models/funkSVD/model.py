@@ -38,8 +38,8 @@ class funkSVD(Model):
 
     # predicts on the test set and return the score
     def test(self) -> float:
-        preds = self.svd.predict(self.test_data)
-        self.test_score = self.get_score(preds, self.test_data["rating"])
+        predictions = self.svd.predict(self.test_data)
+        self.test_score = self.get_score(predictions, self.test_data["rating"])
         return self.test_score
 
     # predicts the reviews for the actual unknowns
@@ -51,7 +51,7 @@ class funkSVD(Model):
         return to_predict
 
     def format_data(self, data):
-        # reformats into dataframe with columns u_id, i_id, and rating
+        # reformats into DataFrame with columns u_id, i_id, and rating
         users, movies = [np.squeeze(arr) for arr in np.split(
             data.Id.str.extract('r(\d+)_c(\d+)').values, 2, axis=-1)]
 

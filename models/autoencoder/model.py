@@ -154,7 +154,7 @@ class Autoencoder(Model):
         if self.epoch == self.last_tested_epoch:
             return self.last_test_result
 
-        # recostruct the whole review matrix and then read the specific predictions from it
+        # reconstruct the whole review matrix and then read the specific predictions from it
         reconstructed_matrix = self.reconstruct_whole_matrix()
 
         predictions = np.zeros(len(self.t_users))
@@ -169,20 +169,20 @@ class Autoencoder(Model):
 
     # predicts the reviews
     def predict(self, to_predict):
-        # recostruct the whole review matrix and then read the specific predictions from it
+        # reconstruct the whole review matrix and then read the specific predictions from it
         reconstructed_matrix = self.reconstruct_whole_matrix()
 
         users, movies = [np.squeeze(arr) for arr in np.split(
             to_predict.Id.str.extract('r(\d+)_c(\d+)').values.astype(int) - 1, 2, axis=-1)]
 
-        preds = []
+        predictions = []
 
         for user, movie in zip(users, movies):
-            preds.append(reconstructed_matrix[user][movie])
+            predictions.append(reconstructed_matrix[user][movie])
 
-        preds = np.array(preds)
+        predictions = np.array(predictions)
 
-        to_predict["Prediction"] = preds
+        to_predict["Prediction"] = predictions
         return to_predict
 
     def preprocess_data(self):
