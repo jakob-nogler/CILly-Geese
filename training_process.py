@@ -74,7 +74,7 @@ def start_training(config: "dict", verbose: bool = False, save_log: bool = False
             config (dict, optional): information on the model to be trained
         """
         model, hyperparameters, log = get_trained_model(
-            config, train_data, test_data, verbose=verbose, save_model=save_models, use_wandb=use_wandb, full_data=use_full_data)
+            config, train_data, test_data, verbose=verbose, save_model=save_models, use_wandb=use_wandb, full_data=use_full_data or almost_full_data)
 
         # compute validation score
         test_prediction = copy.deepcopy(test_data)

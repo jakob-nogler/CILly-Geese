@@ -30,19 +30,19 @@ def get_trained_model(config: dict, train_set: "pd.DataFrame", test_set: "pd.Dat
     """
 
     if not use_wandb:
-        #randomly draw hyperparameters from the lists as specified in the config file
+        # randomly draw hyperparameters from the lists as specified in the config file
         hyperparameters = draw_hyperparameters(config["hyperparameters"])
     else:
-        #draw hyperparameters according to the wandb framework
+        # draw hyperparameters according to the wandb framework
         wandb.init()
         hyperparameters = vars(wandb.config)['_items']
         if 'seed' not in hyperparameters:
             hyperparameters['seed'] = random.randrange(1, 1e6)
 
-    #initialize the model
+    # initialize the model
     model = get_model(config["model"], hyperparameters, train_set, test_set)
 
-    #check if the model has already been saved -> use the already trained model if so
+    # check if the model has already been saved -> use the already trained model if so
     model_hash = get_model_hash(config["model"], hyperparameters, full_data)
     directory = f"./trained_models/{config['model']}"
     path = f"./trained_models/{config['model']}/{model_hash}"
@@ -52,17 +52,17 @@ def get_trained_model(config: dict, train_set: "pd.DataFrame", test_set: "pd.Dat
         model.load(path)
         return model, hyperparameters, {}
 
-    #train model
+    # train model
     print(f"Training {config['model']}...")
     log, min_epoch = train_model(model,
-                      verbose=verbose,
-                      use_wandb=use_wandb,
-                      full_data=full_data
-                      )
+                                 verbose=verbose,
+                                 use_wandb=use_wandb,
+                                 full_data=full_data
+                                 )
 
     hyperparameters["num_epochs"] = min_epoch
 
-    #save the model to file
+    # save the model to file
     if save_model:
         os.makedirs(directory, exist_ok=True)
         model.save(path)
@@ -71,7 +71,7 @@ def get_trained_model(config: dict, train_set: "pd.DataFrame", test_set: "pd.Dat
 
 
 def train_model(model: Model, verbose: bool = False, use_wandb: bool = False, full_data: bool = False) -> "list[dict]":
-    #trains the model
+    # trains the model
 
     log = []
 
@@ -91,15 +91,15 @@ def train_model(model: Model, verbose: bool = False, use_wandb: bool = False, fu
     min_score = 50000
     min_epoch = -1
 
-    #train the model as long as there is progress on the validation set
-    while (not full_data and not stopper.early_stop) or (full_data and max_epochs and i <= max_epochs):
-        #one epoch
+    # train the model as long as there is progress on the validation set
+    while (not max_epochs and not stopper.early_stop) or (max_epochs and i <= max_epochs):
+        # one epoch
         epoch_log = {}
 
         loss = model.train()
         epoch_log["loss"] = loss
 
-        #compute the validation score and pass it to the early stopper
+        # compute the validation score and pass it to the early stopper
         test_score = model.test()
         stopper.step(test_score)
         epoch_log["test_score"] = test_score
@@ -113,7 +113,7 @@ def train_model(model: Model, verbose: bool = False, use_wandb: bool = False, fu
 
         log.append(epoch_log)
 
-        #log the epoch to the wandb server
+        # log the epoch to the wandb server
         if use_wandb:
             wandb.log({
                 'epoch': i,

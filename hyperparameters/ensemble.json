@@ -1,0 +1,210 @@
+{
+    "combination_weights": [
+        0.05881994217634201,
+        -0.07190196961164474,
+        -0.06516225636005402,
+        -0.0634404867887497,
+        0.7142314314842224,
+        0.5893254280090332,
+        0.4909217357635498,
+        1.9845585823059082,
+        2.108383893966675,
+        1.99751877784729
+    ],
+    "config_list": [
+        {
+            "baseline": 1.1,
+            "hyperparameters": {
+                "num_epochs": 3,
+                "num_iterations": 20,
+                "patience": 0,
+                "rak": 922267,
+                "rank": 4,
+                "reg_parameter": 0.07,
+                "seed": 368023
+            },
+            "model": "als",
+            "num_repetitions": 1,
+            "test_score": 0.9888873224068891
+        },
+        {
+            "baseline": 0.991,
+            "hyperparameters": {
+                "early_stopping": false,
+                "learning_rate": 0.010984232522642634,
+                "n_epochs": 31,
+                "n_factors": 50,
+                "num_epochs": 3,
+                "patience": 0,
+                "reg_parameter": 0.08120988611039315,
+                "seed": 87571
+            },
+            "model": "funkSVD",
+            "num_repetitions": 1,
+            "test_score": 0.9215687986803671
+        },
+        {
+            "baseline": 0.991,
+            "hyperparameters": {
+                "early_stopping": false,
+                "learning_rate": 0.010984232522642634,
+                "n_epochs": 31,
+                "n_factors": 50,
+                "num_epochs": 3,
+                "patience": 0,
+                "reg_parameter": 0.08120988611039315,
+                "seed": 750169
+            },
+            "model": "funkSVD",
+            "num_repetitions": 1,
+            "test_score": 0.921341993233236
+        },
+        {
+            "baseline": 0.99,
+            "hyperparameters": {
+                "activation": "selu",
+                "batch_size": 128,
+                "drop_probability": 0.05,
+                "encoded_dimension": 64,
+                "enhancement_factor": 0,
+                "hidden_dimension": 64,
+                "indicate_interactions": false,
+                "learning_rate": 0.0043881424784637385,
+                "num_epochs": 199,
+                "num_hidden_decoder": 2,
+                "num_hidden_encoder": 1,
+                "one_hot_reviews": true,
+                "optimizer": "adam",
+                "patience": 28,
+                "predict_interactions": true,
+                "refeed_density": 0.2,
+                "refeeds": 0,
+                "seed": 470922,
+                "transpose": false,
+                "weight_decay": 0.0002633794664458511
+            },
+            "model": "autoencoder",
+            "num_repetitions": 1,
+            "test_score": 0.9546075540583676
+        },
+        {
+            "baseline": 0.99,
+            "hyperparameters": {
+                "activation": "selu",
+                "batch_size": 256,
+                "drop_probability": 0,
+                "encoded_dimension": 24,
+                "enhancement_factor": 0,
+                "hidden_dimension": 128,
+                "indicate_interactions": false,
+                "learning_rate": 0.0020083317353855896,
+                "num_epochs": 226,
+                "num_hidden_decoder": 2,
+                "num_hidden_encoder": 1,
+                "one_hot_reviews": false,
+                "optimizer": "adam",
+                "patience": 32,
+                "predict_interactions": true,
+                "refeed_density": 0.5,
+                "refeeds": 0,
+                "seed": 470922,
+                "transpose": false,
+                "weight_decay": 0.0002482102801712193
+            },
+            "model": "autoencoder",
+            "num_repetitions": 1,
+            "test_score": 0.9507637031261118
+        },
+        {
+            "baseline": 1,
+            "hyperparameters": {
+                "activation": "relu",
+                "batch_size": 512,
+                "drop_probability": 0,
+                "encoded_dimension_movie": 16,
+                "encoded_dimension_user": 16,
+                "extension_factor": 2,
+                "hidden_dimension_movie": 64,
+                "hidden_dimension_predictor": 64,
+                "hidden_dimension_user": 64,
+                "learning_rate": 0.0001,
+                "num_epochs": 27,
+                "patience": 3,
+                "seed": 974890,
+                "steps_per_epoch": 100,
+                "train_embeddings": true,
+                "weight_decay": 0
+            },
+            "model": "cfda",
+            "num_repetitions": 1,
+            "test_score": 0.9472007439378287
+        },
+        {
+            "baseline": 1,
+            "hyperparameters": {
+                "activation": "relu",
+                "batch_size": 512,
+                "drop_probability": 0,
+                "encoded_dimension_movie": 16,
+                "encoded_dimension_user": 16,
+                "extension_factor": 2,
+                "hidden_dimension_movie": 64,
+                "hidden_dimension_predictor": 64,
+                "hidden_dimension_user": 64,
+                "learning_rate": 0.0001,
+                "num_epochs": 30,
+                "patience": 3,
+                "seed": 306267,
+                "steps_per_epoch": 100,
+                "train_embeddings": true,
+                "weight_decay": 0
+            },
+            "model": "cfda",
+            "num_repetitions": 1,
+            "test_score": 0.9516070291115981
+        },
+        {
+            "baseline": 1.2,
+            "hyperparameters": {
+                "movie_interactions": true,
+                "num_epochs": 100,
+                "patience": 0,
+                "rank": 29,
+                "seed": 414592,
+                "user_interactions": true
+            },
+            "model": "bayesiansvd",
+            "num_repetitions": 1,
+            "test_score": 0.8749746544600597
+        },
+        {
+            "baseline": 1.2,
+            "hyperparameters": {
+                "movie_interactions": true,
+                "num_epochs": 100,
+                "patience": 0,
+                "rank": 30,
+                "seed": 260952,
+                "user_interactions": true
+            },
+            "model": "bayesiansvd",
+            "num_repetitions": 1,
+            "test_score": 0.873216590741927
+        },
+        {
+            "baseline": 1.2,
+            "hyperparameters": {
+                "movie_interactions": true,
+                "num_epochs": 100,
+                "patience": 0,
+                "rank": 30,
+                "seed": 599552,
+                "user_interactions": true
+            },
+            "model": "bayesiansvd",
+            "num_repetitions": 1,
+            "test_score": 0.8718060675848557
+        }
+    ],
+    "test_score": 0.8886377849071597
+}

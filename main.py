@@ -7,7 +7,7 @@ parser = argparse.ArgumentParser(
     prog="Trains the best CIL collaborative filtering model"
 )
 
-parser.add_argument('--config', default="oneidea.json",
+parser.add_argument('--config', default="ensemble.json",
                     help="Configuration file used")
 parser.add_argument('--verbose', default=False, action="store_true",
                     help="Print detailed information on the training process")

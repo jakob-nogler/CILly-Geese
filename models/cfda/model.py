@@ -195,7 +195,7 @@ class CFDA(Model):
         self.mask = torch.tensor(mask, device=device)
         self.true_interactions = torch.tensor(true_interactions, device=device)
 
-        if self.use_all_interactions:
+        if False:  # self.use_all_interactions:
             train_users = torch.tensor(
                 user_movie_pairs.user_id - 1, dtype=torch.int32, device=device)
             train_movies = torch.tensor(
