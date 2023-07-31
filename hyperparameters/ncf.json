@@ -8,10 +8,10 @@
                  "batch_size": 128,
                  "drop_probability": 0,
                  "hidden_dimension": 64,
-                 "learning_rate": 0.025917985795568567,
+                 "learning_rate": 1e-3,
                  "movies_embedding_size": 16,
                  "num_layers": 1,
-                 "patience": 7,
+                 "patience": 5,
                  "seed": 765075029,
                  "users_embedding_size": 32,
                  "weight_decay": 1e-4
