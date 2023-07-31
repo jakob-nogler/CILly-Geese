@@ -27,9 +27,9 @@ After finishing, the final predictions to submit to Kaggle will appear under the
 
 To run a single model please run
 
-`python main.py --config model_name.json [--full_data]`,
+`python main.py --config model-name.json [--full_data]`,
 
-where $\text{model_name } \in \{\text{als, autoencoder, bayesiansvd, funksvd, gernot, lightgcn, ncf, cfda} \}$ is the name of the model you wish to run.
+where $\text{model-name } \in \{\text{als, autoencoder, bayesiansvd, funksvd, gernot, lightgcn, ncf, cfda} \}$ is the name of the model you wish to run.
 Please use the `--full_data` flag in case you want to train the model on the full dataset (to generate a Kaggle submission) and leave it out in case you want to obtain the local validation score.
 
 # Implemented Models
