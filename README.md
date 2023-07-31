@@ -7,8 +7,15 @@ It is also allows for integration with [wandb](https://wandb.ai/).
 
 # Installation
 
-Before running the project, please make sure that python 3.9 and are installed on your machine.
-To install the required packages, please run `python -m pip install -r requirements.txt`
+Before running the project, please make sure that python 3.9 is installed on your machine, you can use conda or venv to set up the requirements.
+To use conda, run the following:
+
+```sh
+conda create -n cilly-fs23 python==3.9
+conda activate cilly-fs23
+# Run this in the same folder as this README
+python -m pip install -r requirements.txt
+```
 
 # Quick start
 
@@ -16,14 +23,14 @@ To train the ensemble used for the final submission please run
 
 `python main.py --full_data`.
 
-After finishing, the final predictions to submit to kaggle will appear under the `results/` folder under a name containing the current date.
+After finishing, the final predictions to submit to Kaggle will appear under the `results/` folder under a name containing the current date.
 
 To run a single model please run
 
 `python main.py --config model_name.json [--full_data]`,
 
-where model_name $\in \{\text{als, autoencoder, bayesiansvd, funksvd, gernot, lightgcn, ncf, cfda} \}$ is the name of the model you wish to run.
-Please use the `--full_data` flag in case you want to train the model on the full dataset (to generate a kaggle submission) and leave it out in case you want to obtain the local validation score.
+where $\text{model\_name } \in \{\text{als, autoencoder, bayesiansvd, funksvd, gernot, lightgcn, ncf, cfda} \}$ is the name of the model you wish to run.
+Please use the `--full_data` flag in case you want to train the model on the full dataset (to generate a Kaggle submission) and leave it out in case you want to obtain the local validation score.
 
 # Implemented Models
 
@@ -54,8 +61,8 @@ You can start the project by running `python main.py` with the following optiona
 | `--wandb`             | Use the wandb framework for hyperparameter search. Sweep configuration must be defined in the config file   |
 | `--sweep_id SWEEP_ID` | Restart an existing wandb sweep with a given id                                                             |
 
-The programm will train the models as specified in the config file and construct an ensemble of the predictions of each of them.
-The final prediction, which can be submitted to kaggle, will be save under the `results/` folder.
+The program will train the models as specified in the config file and construct an ensemble of the predictions of each of them.
+The final prediction, which can be submitted to Kaggle, will be save under the `results/` folder.
 
 ### Config files
 
@@ -87,4 +94,4 @@ Each of the configurations in the config list should have the following structur
 | `models/`             | Implementations of the various models                                                                                                 |
 | `hyperparameters/`    | Config files                                                                                                                          |
 | `data/`               | Contains the full train dataset as well as a split into training and validation sets.                                                 |
-| `results/`            | Final predictions to submit to kaggle                                                                                                 |
+| `results/`            | Final predictions to submit to Kaggle                                                                                                 |
